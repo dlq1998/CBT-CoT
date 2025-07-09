@@ -24,7 +24,7 @@ aoai_client = OpenAI(api_key="sk-c684d8d17de243419ab3152d99ff7b61",
 five_o_client = Swarm(aoai_client)
 
 # 读取问题描述数据
-with open('data_again/again/unmatched_20000_output.json', 'r', encoding='utf-8') as file:
+with open('PsyQA-Q20000.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # 存储所有结果的列表
@@ -62,7 +62,7 @@ for idx, item in enumerate(data, 1):
 
     # 每处理 10 条数据就保存一次
     if idx % 5 == 0:
-        output_file = 'data_again/A_2/matched_20000_2.json'
+        output_file = 'A20000.json'
         try:
             # 尝试读取现有文件内容
             with open(output_file, 'r', encoding='utf-8') as outfile:
@@ -81,7 +81,7 @@ for idx, item in enumerate(data, 1):
 
 # 处理最后不足 10 条的数据
 if result_data:
-    output_file = 'data_again/A_2/matched_20000_2.json'
+    output_file = 'A20000.json'
     try:
         with open(output_file, 'r', encoding='utf-8') as outfile:
             existing_data = json.load(outfile)
