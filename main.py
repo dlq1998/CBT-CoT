@@ -24,7 +24,7 @@ aoai_client = OpenAI(api_key="sk-c684d8d17de243419ab3152d99ff7b61",
 five_o_client = Swarm(aoai_client)
 
 # 读取问题描述数据
-with open('PsyQA-Q20000.json', 'r', encoding='utf-8') as file:
+with open('Q20000.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 # 存储所有结果的列表
@@ -91,3 +91,4 @@ if result_data:
     with open(output_file, 'w', encoding='utf-8') as outfile:
         json.dump(combined_data, outfile, ensure_ascii=False, indent=4)
     print(f"✅ 所有 {len(data)} 条数据已成功保存到文件！")
+
