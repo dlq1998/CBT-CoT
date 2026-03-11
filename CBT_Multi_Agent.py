@@ -1,8 +1,5 @@
-#from dotenv import load_dotenv
 import os
 # 加载 .env 文件中的环境变量
-#load_dotenv()
-# from openai import AzureOpenAI
 from openai import OpenAI
 from swarm import Swarm, Agent
 import json
@@ -21,7 +18,6 @@ def transfer_to_Supportive_Response_agent(table_5,text):
 Automatic_Thought_Extraction_agent = Agent(
     name="自动思维提取",
     model="deepseek-chat",
-    # model="qwen-plus",
     instructions="""
 你是一名专业的认知行为疗法（CBT）咨询师，擅长使用三栏记录表（事件 - 自动思维 - 情绪与行为反应）结构化解析来访者的心理困扰。
 
@@ -40,7 +36,6 @@ Automatic_Thought_Extraction_agent = Agent(
 
 Automatic_Thought_Evaluation_agent = Agent(
     name="自动思维评估",
-    # model="qwen-plus",
     model="deepseek-chat",
     instructions="""
 你是一名认知行为疗法专家，擅长识别和分析用户的自动思维。你的任务是对“三栏表”中的“自动思维”部分进行系统性认知评估，包括以下三项：
@@ -67,7 +62,6 @@ Automatic_Thought_Evaluation_agent = Agent(
 
 CoT_infer_agent = Agent(
     name="CoT推理",
-    # model="qwen-plus",
     model="deepseek-chat",
     instructions="""
 你是一名认知行为治疗（CBT）专家，擅长逻辑推理与认知重构。你的任务是基于三栏表和认知扭曲类型，按照认知行为疗法的推理流程，生成合适的替代思维，并预测用户可能的反应，填写五栏表。
@@ -96,7 +90,6 @@ CoT_infer_agent = Agent(
 
 Supportive_Response_agent = Agent(
     name="回复生成",
-    # model="qwen-plus",
     model="deepseek-chat",
     instructions="""
 你是一名经验丰富的心理专家，专注于帮助用户调整认知、改善情绪。你的任务是基于五栏表内容，与用户进行单轮互动，提供温和且有说服力的认知重构指导。
@@ -120,10 +113,3 @@ Supportive_Response_agent = Agent(
 """,
 )
 
-# Generation_agent = Agent(
-#     name="直接生成",
-#     model="deepseek-chat",
-#     instructions="""
-# 请你根据用户的问题和描述直接生成回复。
-# """
-#    )
