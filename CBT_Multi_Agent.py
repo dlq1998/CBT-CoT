@@ -1,20 +1,3 @@
-import os
-# 加载 .env 文件中的环境变量
-from openai import OpenAI
-from swarm import Swarm, Agent
-import json
-
-def transfer_to_Automatic_Thought_Evaluation_agent(table_3):
-    return Automatic_Thought_Evaluation_agent
-
-def transfer_to_CoT_infer_agent(table_3,text):
-    return CoT_infer_agent
-
-
-def transfer_to_Supportive_Response_agent(table_5,text):
-    return Supportive_Response_agent
-
-
 Automatic_Thought_Extraction_agent = Agent(
     name="自动思维提取",
     model="deepseek-chat",
@@ -30,9 +13,7 @@ Automatic_Thought_Extraction_agent = Agent(
 1. 全面覆盖：充分分析用户描述中所有可能影响情绪与行为的关键信息，避免遗漏。
 2. 结构清晰：严格区分“事件”“自动思维”“情绪与行为反应”三个部分，保证划分明确。
 3. 语言精炼：使用清晰、简洁的表述，让三栏表易于理解和后续分析。
-请将完整的三栏表发送给 transfer_to_Automatic_Thought_Evaluation_agent 函数进一步处理，并在提交后清空三栏表内容，以保证数据安全和流程顺畅。
 """,
-    functions=[transfer_to_Automatic_Thought_Evaluation_agent])
 
 Automatic_Thought_Evaluation_agent = Agent(
     name="自动思维评估",
@@ -58,7 +39,6 @@ Automatic_Thought_Evaluation_agent = Agent(
 
 若综合判断后认为该样本需要进行认知重构，请将完整的三栏表内容与识别出的认知扭曲类型一并发送至 `transfer_to_CoT_infer_agent` 函数，以支持后续处理流程。
 """,
-    functions=[transfer_to_CoT_infer_agent])
 
 CoT_infer_agent = Agent(
     name="CoT推理",
@@ -86,8 +66,6 @@ CoT_infer_agent = Agent(
 再将五栏表 和 选用的认知重构技巧 发送给 transfer_to_Supportive_Response_agent 函数，并清空五栏表内容。
 注意：必须先写出五栏表和分析内容，再调用函数，不能提前调用。
 """,
-    functions=[transfer_to_Supportive_Response_agent])
-
 Supportive_Response_agent = Agent(
     name="回复生成",
     model="deepseek-chat",
@@ -112,4 +90,5 @@ Supportive_Response_agent = Agent(
 请严格按照上述任务指引与注意事项，基于收到的五栏表信息，为用户生成一段完整的支持性回复。
 """,
 )
+
 
